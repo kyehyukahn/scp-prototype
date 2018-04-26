@@ -144,71 +144,8 @@ do
 done
 ```
 
-## Test
+## To Do List
 
-Not Yet
-```sh
-$ pytest
-$ flake8
-```
-
-## Examples
-
-See the [examples](./examples/).
-
-
-## `send-message.py`
-
-> Before running this script, please run `python setup.py develop`.
-
-```sh
-$ python send-message.py -h
-usage: send-message.py [-h] [-verbose]
-                       [-log-level {critical,fatal,error,warn,warning,info,debug}]
-                       [-log-output LOG_OUTPUT]
-                       [-log-output-metric LOG_OUTPUT_METRIC] [-log-show-line]
-                       [-log-no-color]
-                       endpoints [endpoints ...] [message]
-
-positional arguments:
-  endpoints             endpoints and it's number of messages, you want to
-                        send; ex) http://localhost:80?m=5
-                        http://localhost:80?m=10
-  message               Messages you want to send to the server (default:
-                        None)
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -verbose              verbose log (default: False)
-  -log-level {critical,fatal,error,warn,warning,info,debug}
-                        set log level (default: debug)
-  -log-output LOG_OUTPUT
-                        set log output file (default: None)
-  -log-output-metric LOG_OUTPUT_METRIC
-                        set metric output file (default: None)
-  -log-show-line        show seperate lines in log (default: False)
-  -log-no-color         disable colorized log message by level (default:
-                        False)
-```
-
-This script will try to send messages to multiple nodes simultaneously.
-
-
-This will send one random message to <http://localhost:54320>.
-
-```sh
-$ send-message.py http://localhost:54320
-```
-
-This will send one random message to <http://localhost:54320> and <http://localhost:54321> at the same time.
-
-```sh
-$ send-message.py http://localhost:54320 http://localhost:54321
-```
-
-You can set the number of messages for each node. For example, this will send 9 random messages to
-<http://localhost:54320> and 10 random messages to <http://localhost:54321>.
-
-```sh
-$ send-message.py http://localhost:54320?m=9 http://localhost:54321?m=10
-```
+1. Slot
+2. Nomination Protocol
+3. Ballot Protocol
