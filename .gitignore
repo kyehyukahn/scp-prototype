@@ -1,0 +1,13 @@
+*.py?
+.*.sw?
+.sw?
+.DS_Store
+lastfailed
+*.egg-info
+tmp
+.idea
+.vscode/
+Include/
+Lib/
+Scripts/
+tcl
