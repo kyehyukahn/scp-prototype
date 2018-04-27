@@ -3,6 +3,7 @@ import hashlib
 import lorem
 import json
 
+
 class TXEnvelop:
     signature = None
     tx = None

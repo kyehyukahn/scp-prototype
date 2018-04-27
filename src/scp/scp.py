@@ -52,13 +52,13 @@ class SCP(LoggingMixin) :
         return len(self.validators) + 1 == len(self.validator_connected)
 
     def getSlot(self, index):
+        # slot = self.knownSlots[index]
+        # if not slot:
+        #     slot = Slot(index, self.consensus)
         pass
 
     def setSlot(self, index, slot):
         pass
 
-    def receiveTxEnvelop(self, txEnvelop):
-        print("receive TXEnvelop : %s", txEnvelop)
-
-    def receiveSCPEnvelop(self, scpEnvelop):
+    def receiveSCPMessage(self, scpEnvelop):
         print("receive SCPEnvelop : %s", scpEnvelop)

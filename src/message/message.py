@@ -1,17 +1,19 @@
 import enum
 import hashlib
 
-#StellarMessage
+
 class MessageType(enum.Enum):
     ERROR = enum.auto()
     TRANSACTION = enum.auto()
     SCP_MESSAGE = enum.auto()
+
 
 class SCPStatementType(enum.Enum):
     SCP_ST_PREPARE = enum.auto()
     SCP_ST_CONFIRM = enum.auto()
     SCP_ST_EXTERNALIZE = enum.auto()
     SCP_ST_NOMINATE = enum.auto()
+
 
 class Ballot :
     count = 0
@@ -20,6 +22,7 @@ class Ballot :
     def __init__(self, count, value):
         self.count = count
         self.value = value
+
 
 class SCPSTConfirm :
     quorumHash = None   # D
@@ -31,6 +34,7 @@ class SCPSTConfirm :
 
     def __init__(self, qh, b, p, _p, cn, hn):
         pass
+
 
 class SCPSTPrepare :
     quorumHash = None   # D

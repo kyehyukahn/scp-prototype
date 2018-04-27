@@ -5,3 +5,6 @@ from .node import (
 from .scp import (
     SCP,
 )
+from .slot import (
+    Slot,
+)

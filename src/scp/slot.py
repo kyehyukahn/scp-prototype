@@ -1,4 +1,5 @@
-from util import LoggingMixin
+from utils import LoggingMixin
+
 
 class Slot(LoggingMixin):
     slotIndex = 0
