@@ -13,12 +13,13 @@ To install and deploy the source, you need to install these packages,
  - python: 3.6 or higher
  - pip
 
-
+## setup
+$ python setup.py develop
 
 ## Deployment
 
 ```sh
-$ python run-application.py -h
+$ run-application.py -h
 usage: run-blockchain.py [-h] [-verbose]
                          [-log-level {critical,fatal,error,warn,warning,info,debug}]
                          [-log-output LOG_OUTPUT]
@@ -48,7 +49,7 @@ optional arguments:
 Set the config file.
 
 ```sh
-$ python run-application.py node5001.ini
+$ run-application.py examples/node5001.ini
 2017-12-06 15:21:48,459 - __main__ - DEBUG - Node ID: 5001
 2017-12-06 15:21:48,459 - __main__ - DEBUG - Node PORT: 5001
 2017-12-06 15:21:48,459 - __main__ - DEBUG - Validators: ['localhost:5002', 'localhost:5003']
@@ -57,14 +58,14 @@ $ python run-application.py node5001.ini
 Run the other nodes like this.
 
 ```sh
-$ python run-application.py node5002.ini
-$ python run-application.py node5003.ini
+$ run-application.py examples/node5002.ini
+$ run-application.py examples/node5003.ini
 ```
 
 ### Running Message Client, `run-client.py`
 
 ```sh
-$ python run-client.py  -h
+$ run-client.py  -h
 usage: run-client.py [-h] [-verbose]
                      [-log-level {critical,fatal,error,warn,warning,info,debug}]
                      [-log-output LOG_OUTPUT]
@@ -95,7 +96,7 @@ optional arguments:
 After checking node state in the cmd line, run client and send one message to node `5001`
 
 ```sh
-$ python run-client.py --ip "localhost" --port 5001 --message "message"
+$ run-client.py --ip "localhost" --port 5001 --message "message"
 ```
 
 Send five messages at a time every 4 seconds to node `5001`

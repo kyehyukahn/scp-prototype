@@ -1,8 +1,10 @@
 import sys  # noqa
 import subprocess  # noqa
-from pip.req import parse_requirements
 from setuptools import setup, find_packages
-
+try: # for pip >= 10
+    from pip._internal.req import parse_requirements
+except ImportError: # for pip <= 9.0.3
+    from pip.req import parse_requirements
 
 commit = subprocess.Popen(
     'git rev-parse --short HEAD'.split(),
@@ -23,7 +25,7 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages('src', exclude=('test',)),
     scripts=(
-        'scripts/run-application.py',
-        'scripts/run-client.py',
+        'script/run-application.py',
+        'script/run-client.py',
     ),
 )
