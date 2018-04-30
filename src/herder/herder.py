@@ -27,5 +27,11 @@ class Herder(LoggingMixin):
 
     def receiveSCPMessage(self, scpEnvelop):
         assert isinstance(scpEnvelop, SCPEnvelop)
-        self.consensus.receiveSCPMessage(scpEnvelop)
+        self.consensus.receiveEnvelop(scpEnvelop)
         return
+
+    def rebroadcast(self):
+        pass
+
+    def broadcast(self):
+        pass

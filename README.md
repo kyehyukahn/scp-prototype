@@ -5,6 +5,7 @@ Stellar Consensus Protocol Prototyp
 ## Notice
 
 **This is not a repository for running a node. just on implementation.**
+**If it is complete, I will inform you**
 
 ## Installation
 

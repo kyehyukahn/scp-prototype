@@ -15,7 +15,12 @@ class SCPStatementType(enum.Enum):
     SCP_ST_NOMINATE = enum.auto()
 
 
-class Ballot :
+class EnvelopState(enum.Enum):
+    INVALID = enum.auto()
+    VALID = enum.auto()
+
+
+class Ballot:
     count = 0
     value = None
 
@@ -24,7 +29,7 @@ class Ballot :
         self.value = value
 
 
-class SCPSTConfirm :
+class SCPSTConfirm:
     quorumHash = None   # D
     ballot = None       # b
     prepare = None      # p
@@ -36,7 +41,7 @@ class SCPSTConfirm :
         pass
 
 
-class SCPSTPrepare :
+class SCPSTPrepare:
     quorumHash = None   # D
     ballot = None       # b
     nPrepare = 0        # p.n
@@ -46,6 +51,7 @@ class SCPSTPrepare :
     def __init__(self, qh, b, pn, cn, hn):
         pass
 
+
 class SCPSTExternalize:
     commitQuorumSetHash = None
     commit = None
@@ -53,6 +59,7 @@ class SCPSTExternalize:
 
     def __init__(self, cqh, c, hn):
         pass
+
 
 class SCPSTNominate:
     quorumSetHash = None    # D
@@ -62,17 +69,19 @@ class SCPSTNominate:
     def __init__(self, qh, v, a):
         pass
 
+
 class SCPEnvelop:
     signature = None
-    nodeID = None # v
-    slotIndex = None # i
+    nodeID = None  # v
+    slotIndex = None  # i
     statementType = None
-    envelop = None # SCPSTConfirm, SCPSTPrepare, SCPSTExternalize, SCPSTNominate
+    statement = None  # SCPSTConfirm, SCPSTPrepare, SCPSTExternalize, SCPSTNominate
 
     def __init__(self, signature, nodeID, slotIndex, statementType, envelop):
         pass
 
-class Message :
+
+class Message:
     messageType = None
     data = None
 
