@@ -18,6 +18,8 @@ class NominationProtocol(LoggingMixin):
     latestCompositeCandidate = None
     previousValue = None
 
+    valueNominated = list()
+
     def __init__(self, index, scp):
         self.slot = scp.getSlot(index)
         roundNumber = 0
@@ -32,4 +34,7 @@ class NominationProtocol(LoggingMixin):
         pass
 
     def stopNomination(self, slotIndex):
+        pass
+
+    def setTimer(self, timeout):
         pass

@@ -64,6 +64,14 @@ class SCP(LoggingMixin):
         return self.getSlot(scpEnvelop.slotIndex).processEnvelop(scpEnvelop)
 
     def nominate(self, slotIndex, value, valueprev):
-        return self.getSlot(slotIndex).nominate(value, valueprev, False )
+        return self.getSlot(slotIndex).nominate(value, valueprev, False)
 
-    def
+    def stopNomination(slotIndex):
+        s = getSlot(slotIndex)
+        if not s:
+            s.stopNomination(slotIndex)
+
+    def getLocalNode(self):
+        return self.localNode
+
+    

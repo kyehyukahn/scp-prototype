@@ -77,6 +77,7 @@ def main(options):
     log.metric(node=node.name, data=node.to_dict())
 
     application = Application(consensus, transport)
+    application.start()
 
     base_server = BaseServer(application)
     base_server.start()
