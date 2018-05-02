@@ -27,7 +27,6 @@ class Herder(LoggingMixin):
     def triggerNextLedger(self):
         print("triggerNextLedger()")
 
-
     def receiveTransaction(self, txEnvelop):
         assert isinstance(txEnvelop, TXEnvelop)
         # check if tx is valid
