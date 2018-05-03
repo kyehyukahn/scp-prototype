@@ -18,6 +18,7 @@ class Timer(threading.Thread):
             time.sleep(self.delay)
             if self.handler is not None:
                 self.handler()
+                self.end()
 
     def end(self):
         self.state = False

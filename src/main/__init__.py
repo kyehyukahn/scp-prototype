@@ -7,6 +7,3 @@ from .base import ( # noqa
 from .event import (  # noqa
     EventManager,
 )
-from .timer import (  # noqa
-    Timer,
-)

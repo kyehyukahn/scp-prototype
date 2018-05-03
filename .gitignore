@@ -4,8 +4,10 @@
 .DS_Store
 lastfailed
 *.egg-info
+*.db
 tmp
 .idea
+.pytest_cache/
 .vscode/
 Include/
 Lib/

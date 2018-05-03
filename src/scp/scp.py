@@ -1,3 +1,4 @@
+from .slot import Slot
 from utils import LoggingMixin
 from message import SCPEnvelop, TXEnvelop, SCPStatementType
 
@@ -53,9 +54,13 @@ class SCP(LoggingMixin):
         return len(self.validators) + 1 == len(self.validator_connected)
 
     def getSlot(self, index):
-        slot = self.knownSlots[index]
-        if not slot:
-            slot = Slot(index, self.consensus)
+        slotIdxs = self.knownSlots.keys()
+        # print("getSlot(" + str(slotIdxs) + ")")
+
+        if index in slotIdxs:
+            slot = self.knownSlots[index]
+        else:
+            slot = Slot(index, self)
             self.knownSlots[index] = slot
         return slot
 
@@ -66,6 +71,9 @@ class SCP(LoggingMixin):
     def nominate(self, slotIndex, value, valueprev):
         return self.getSlot(slotIndex).nominate(value, valueprev, False)
 
+    def nominateTimeout(self, slotIndex, value, valueprev):
+        return self.getSlot(slotIndex).nominate(value, valueprev, True)
+
     def stopNomination(slotIndex):
         s = getSlot(slotIndex)
         if not s:
@@ -73,5 +81,3 @@ class SCP(LoggingMixin):
 
     def getLocalNode(self):
         return self.localNode
-
-    

@@ -1,4 +1,4 @@
-from util import LoggingMixin
+from utils import LoggingMixin
 
 
 class BallotProtocol(LoggingMixin):

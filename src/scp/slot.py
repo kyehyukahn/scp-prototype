@@ -1,3 +1,5 @@
+from .nominationprotocol import NominationProtocol
+from .ballotprotocol import BallotProtocol
 from utils import LoggingMixin
 
 
@@ -11,14 +13,17 @@ class Slot(LoggingMixin):
     def __init__(self, index, scp):
         self.slotIndex = index
         self.scp = scp
-        self.nominationProtocol(index, scp)
-        self.ballotProtocol(index, scp)
+        self.nominationProtocol = NominationProtocol(index, self)
+        self.ballotProtocol = BallotProtocol(index, self)
 
     def getSlotIndex(self):
         return self.slotIndex
 
     def getSCP(self):
         return self.scp
+
+    def getLocalNode(self):
+        return self.scp.validators
 
     def getBallotProtocol(self):
         return self.ballotProtocol
@@ -28,15 +33,15 @@ class Slot(LoggingMixin):
 
     def processEnvelop(self, scpEnvelope):
         if scpEnvelope.statementType is SCPStatementType.SCP_ST_NOMINATE:
-            nominationProtocol.processEnvelope(scpEnvelope)
+            self.nominationProtocol.processEnvelope(scpEnvelope)
         else:
-            ballotProtocol.processEnvelope(scpEnvelope)
+            self.ballotProtocol.processEnvelope(scpEnvelope)
 
     def nominate(self, value, valueprev, timeout):
-        nominationProtocol.nominate(value, valueprev, timeout)
+        self.nominationProtocol.nominate(value, valueprev, timeout)
 
     def stopNomination(self, slotIndex):
-        nominationProtocol.stopNomination(slotIndex)
+        self.nominationProtocol.stopNomination(slotIndex)
 
     def abandonBallot(self):
         pass

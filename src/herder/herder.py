@@ -9,7 +9,15 @@ class Herder(LoggingMixin):
     consensus = None
     overlay = None
     ledger = None
-    pendingValues = list()
+
+    recievedTxs = list()
+    proposedValues = list()
+
+    pendingEnvelope = None
+
+    slotIndex = 0
+    valuePrev = ""
+
 
     def __init__(self, consensus, transport):
         assert isinstance(consensus, SCP)
@@ -22,16 +30,27 @@ class Herder(LoggingMixin):
     def bootstrap(self, application):
         # sync Ledger and....
         print("bootstrap()")
-        self.ledger.legerClosed(application)
+        self.legerClosed(application)
+
+    def legerClosed(self, application):
+        print("legder closed")
+        if application is not None:
+            func = getattr(application, "triggerNextLedger")
+            func()
 
     def triggerNextLedger(self):
         print("triggerNextLedger()")
+        self.proposedValues = self.recievedTxs
+        self.valuePrev, self.slotIndex = self.ledger.latest()
+        self.slotIndex += 1
+        self.consensus.nominate(self.slotIndex,
+                                self.proposedValues, self.valuePrev)
 
     def receiveTransaction(self, txEnvelop):
         assert isinstance(txEnvelop, TXEnvelop)
         # check if tx is valid
-        self.pendingValues.append(txEnvelop.tx)  # no duplicates
-        self.pendingValues = list(set(self.pendingValues))
+        self.recvTxs.append(txEnvelop.tx)  # no duplicates
+        self.recvTxs = list(set(self.recvTxs))
         # print("Tx Set : %s", self.pendingValues)
         return
 

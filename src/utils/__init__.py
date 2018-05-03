@@ -5,3 +5,7 @@ from .util import (
     logger,
     ArgumentParserShowDefaults,
 )
+
+from .timer import (
+    Timer,
+)
