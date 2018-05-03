@@ -56,10 +56,10 @@ class Slot(LoggingMixin):
 
     # returns true if the statement defined by voted and accepted
     # should be accepted
-    def federatedAccept(self):
+    def federatedAccept(self, voted, accepted, envs):
         pass
 
     # returns true if the statement defined by voted
     # is ratified
-    def federatedRatify(self):
+    def federatedRatify(self, voted, envs):
         pass

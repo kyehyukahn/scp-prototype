@@ -39,10 +39,15 @@ class NominationProtocol(LoggingMixin):
         pass
 
     def hashNode(self, prio, node):
-
         pass
 
     def getNodeWeight(self, qSet):
+        pass
+
+    def votedPridicate(self):
+        pass
+
+    def acceptedPridicate(self):
         pass
 
     def nominate(self, value, valueprev, timeout):
@@ -65,7 +70,4 @@ class NominationProtocol(LoggingMixin):
 
 
     def stopNomination(self, slotIndex):
-        pass
-
-    def setTimer(self, timeout):
         pass

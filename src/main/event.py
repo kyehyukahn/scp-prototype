@@ -24,19 +24,24 @@ class LockedQueue(Queue):
 
 
 class Executor(threading.Thread):
-    def __init__(self, application, action_queue):
+    def __init__(self, application, action_queue, timeout_queue):
         assert isinstance(application, BaseApplication)
         assert isinstance(action_queue, LockedQueue)
+        assert isinstance(timeout_queue, LockedQueue)
 
         super(Executor, self).__init__()
         self.application = application
         self.action_queue = action_queue
+        self.timeout_queue = timeout_queue
 
         self.log = logger.get_logger('executor', node=self.application.node.name)
 
     def run(self):
         while True:
-            if self.action_queue.empty():
+            if not self.timeout_queue.empty():
+                func = self.timeout_queue.pop_queue()
+                func()
+            elif self.action_queue.empty():
                 time.sleep(1)
             else:
                 element = self.action_queue.pop_queue()
@@ -60,8 +65,12 @@ class EventManager():
 
         self.application = application
         self.action_queue = LockedQueue()
-        t = Executor(self.application, self.action_queue)
+        self.timeout_queue = LockedQueue()
+        t = Executor(self.application, self.action_queue, self.timeout_queue)
         t.start()
 
     def push_element(self, func_name, arg):
         self.action_queue.push_queue((func_name, arg))
+
+    def push_timeout(self, func):
+        self.timeout_queue.push_queue(func)

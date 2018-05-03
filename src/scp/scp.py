@@ -55,8 +55,6 @@ class SCP(LoggingMixin):
 
     def getSlot(self, index):
         slotIdxs = self.knownSlots.keys()
-        # print("getSlot(" + str(slotIdxs) + ")")
-
         if index in slotIdxs:
             slot = self.knownSlots[index]
         else:
